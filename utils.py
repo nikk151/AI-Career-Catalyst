@@ -79,3 +79,28 @@ def get_project_ranking(project_data, job_desc):
     )
     
     return chat_completion.choices[0].message.content
+
+
+def get_skill_gap_analysis(resume_text, job_desc):
+    system_prompt = "You are a Career Coach. Identify the skill gaps between a resume and a job description."
+    
+    user_prompt = f"""
+    Resume Text: {resume_text}
+    
+    Target Job Description: {job_desc}
+    
+    Task:
+    1. List 3-5 specific Technical Skills found in the JD but MISSING from the resume.
+    2. For each missing skill, recommend a mini-project or certification to bridge the gap.
+    3. Provide a "Match Percentage" (0-100%) based on keywords.
+    """
+
+    chat_completion = client.chat.completions.create(
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        model="llama-3.3-70b-versatile",
+    )
+    
+    return chat_completion.choices[0].message.content

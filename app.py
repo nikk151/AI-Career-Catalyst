@@ -3,6 +3,7 @@ from utils import text_extractor
 from utils import get_ai_analysis
 from utils import fetch_github_repos
 from utils import get_project_ranking
+from utils import get_skill_gap_analysis
 
 st.set_page_config(page_title="AI Career Catalyst", layout="wide")
 
@@ -13,16 +14,18 @@ st.title("AI Career Catalyst")
 st.subheader("Optimize your path to your dream job")
 
 job_description = st.text_area("Enter Job Description Here", height=200) 
+file_uploaded = st.file_uploader("Upload Your Resume Here", type="pdf")
+resume_text=""""""
+if file_uploaded:
+    resume_text = text_extractor(file_uploaded)
 
 if app_mode == "Resume Optimizer":
     st.header("📄 Resume Optimizer")
-    file_uploaded = st.file_uploader("Upload Your Resume Here", type="pdf")
     
     if st.button("Analyze & Optimize"): 
         if file_uploaded and job_description:
             st.info("The AI is now analyzing your bullet points for 'Impact'...")
             
-            resume_text = text_extractor(file_uploaded)
             
             if not resume_text:
                 st.error("Error: Could not extract text. Is this a scanned PDF (image)?")
@@ -48,6 +51,18 @@ elif app_mode == "GitHub Project Ranker":
 elif app_mode == "Skill Gap Analysis":
     st.header("📊 Skill Gap Visualization")
     st.write("Compare your skills against the job requirements.")
+    
+    if st.button("Analyze Gaps"):
+        if file_uploaded and job_description:
+            st.info("Analyzing crucial missing skills...")
+
+            
+            gap_analysis = get_skill_gap_analysis(resume_text, job_description)
+            
+            st.write(gap_analysis)
+            
+        else:
+            st.warning("Please upload a resume and job description.")
     
 elif app_mode == "AI Mock Interview":
     st.header("🤖 AI Mock Interviewer")
