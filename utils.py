@@ -55,3 +55,27 @@ def fetch_github_repos(username):
     else:
         return None
     
+def get_project_ranking(project_data, job_desc):
+    system_prompt = "You are a Tech Lead evaluating a candidate's portfolio."
+    
+    user_prompt = f"""
+    Job Description: {job_desc}
+    
+    Candidate's Projects:
+    {project_data}
+    
+    Task:
+    1. Rank the top 3 projects that best match the Job Description.
+    2. For each, explain WHY it is relevant (e.g., "This project uses Python which matches the JD's requirement for Data Analysis").
+    3. Suggest one technical improvement for the #1 project to make it even stronger.
+    """
+
+    chat_completion = client.chat.completions.create(
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        model="llama-3.3-70b-versatile",
+    )
+    
+    return chat_completion.choices[0].message.content
