@@ -1,6 +1,7 @@
 import streamlit as st
 from utils import text_extractor
 from utils import get_ai_analysis
+from utils import fetch_github_repos
 
 st.set_page_config(page_title="AI Career Catalyst", layout="wide")
 
@@ -36,6 +37,7 @@ elif app_mode == "GitHub Project Ranker":
     if st.button("Rank My Projects"):
         if github_user:
             st.write(f"Fetching projects for {github_user} and matching with JD...")
+            st.write(fetch_github_repos(github_user))
         else:
             st.error("Please enter a GitHub username.")
         

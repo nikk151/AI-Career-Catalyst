@@ -2,6 +2,7 @@ import fitz
 import os
 from dotenv import load_dotenv
 from groq import Groq
+import requests 
 
 load_dotenv() 
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
@@ -33,3 +34,24 @@ def text_extractor(uploaded_file):
             text += page.get_text()
             
     return text.strip()
+
+
+
+def fetch_github_repos(username):
+    url = f"https://api.github.com/users/{username}/repos"
+    headers = {
+        "Authorization": f"token {os.environ.get('GITHUB_TOKEN')}"
+    }
+    
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        repos = response.json()
+        
+        project_data = ""
+        for repo in repos:
+            project_data += f"Project: {repo['name']}\nDescription: {repo['description']}\nTech Stack: {repo['language']}\n\n"
+        return project_data
+    else:
+        return None
+    
