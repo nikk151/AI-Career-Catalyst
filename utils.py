@@ -104,3 +104,12 @@ def get_skill_gap_analysis(resume_text, job_desc):
     )
     
     return chat_completion.choices[0].message.content
+
+
+def get_interview_response(messages):
+    
+    chat_completion = client.chat.completions.create(
+        messages=messages,
+        model="llama-3.3-70b-versatile",
+    )
+    return chat_completion.choices[0].message.content

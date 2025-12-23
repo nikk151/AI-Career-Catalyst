@@ -4,6 +4,8 @@ from utils import get_ai_analysis
 from utils import fetch_github_repos
 from utils import get_project_ranking
 from utils import get_skill_gap_analysis
+from utils import get_interview_response
+
 
 st.set_page_config(page_title="AI Career Catalyst", layout="wide")
 
@@ -67,3 +69,51 @@ elif app_mode == "Skill Gap Analysis":
 elif app_mode == "AI Mock Interview":
     st.header("🤖 AI Mock Interviewer")
     st.write("Practice for your interview based on your optimized resume.")
+    
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+        
+        st.session_state.messages.append({
+            "role": "system", 
+            "content": "You are a Technical Interviewer. Ask the candidate questions based on their resume. Ask ONE question at a time. Wait for their answer."
+        })
+        
+    if len(st.session_state.messages) == 1:
+        if st.button("Start Interview"):
+            if resume_text:
+                
+                initial_prompt = f"Here is my resume: {resume_text}. Start the interview by asking me about my most recent project."
+                
+                st.session_state.messages.append({"role": "user", "content": initial_prompt})
+                
+                with st.spinner("Thinking..."):
+                    ai_response = get_interview_response(st.session_state.messages)
+                
+                st.session_state.messages.append({"role": "assistant", "content": ai_response})
+                st.rerun() 
+            else:
+                st.warning("Please upload your resume first!")
+
+    for message in st.session_state.messages:
+        if message["role"] != "system" and "Here is my resume" not in message["content"]:
+            with st.chat_message(message["role"]):
+                st.write(message["content"])
+
+   
+    if prompt := st.chat_input("Type your answer here..."):
+        
+        with st.chat_message("user"):
+            st.write(prompt)
+        
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        
+        with st.spinner("Interviewer is thinking..."):
+            ai_response = get_interview_response(st.session_state.messages)
+            
+        with st.chat_message("assistant"):
+            st.write(ai_response)
+        
+        st.session_state.messages.append({"role": "assistant", "content": ai_response})
+        
+        
+        
