@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Template (YOUR NAME)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* 1. GLOBAL SETTINGS */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 10pt; 
+            line-height: 1.25; 
+            color: #000;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 2. THE PAPER (US LETTER Dimensions) */
+        .page {
+            width: 8.5in; 
+            height: 11in; 
+            background: white;
+            padding: 0.3in; 
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden; 
+        }
+
+        /* 3. LINKS */
+        a { color: black; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* 4. HEADER */
+        header { text-align: center; margin-bottom: 8px; }
+
+        h1 {
+            font-size: 28pt;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-info {
+            font-size: 10pt;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info span { display: flex; align-items: center; gap: 4px; }
+
+        /* 5. SECTIONS */
+        h2.section-title {
+            font-size: 12pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-bottom: 1px solid black;
+            margin-top: 10px;
+            margin-bottom: 4px;
+            padding-bottom: 1px;
+        }
+
+        /* 6. LISTS */
+        ul { list-style-type: none; padding-left: 0; margin-bottom: 0; }
+        
+        li {
+            position: relative;
+            padding-left: 10px;
+            margin-bottom: 1px; 
+            font-size: 9.5pt;
+        }
+
+        li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: -1px;
+            font-size: 6pt;
+        }
+
+        /* 7. UTILITIES */
+        .row { display: flex; justify-content: space-between; align-items: baseline; width: 100%; }
+        .bold { font-weight: 700; }
+        .italic { font-style: italic; }
+        .small { font-size: 10pt; }
+
+        .entry-header { margin-bottom: 0px; }
+        .sub-entry-header { margin-bottom: 2px; }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 1px;
+            font-size: 9.5pt;
+        }
+        
+        .spacer { margin-top: 5px; }
+
+        /* 8. PRINT SETTINGS */
+        @page {
+            size: letter;
+            margin: 0; 
+        }
+
+        @media print {
+            body { background: none; }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                height: 100%;
+                padding: 0.3in;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <header>
+            <h1>YOUR NAME</h1>
+            <div class="contact-info">
+                <span><i class="fa fa-phone"></i> +00 1234567890</span>
+                <span>|</span>
+                <span><i class="fa fa-envelope"></i> <a href="#">yourname.email@gmail.com</a></span>
+                <span>|</span>
+                <span><i class="fab fa-linkedin"></i> <a href="#">linkedin/profile-id</a></span>
+                <span>|</span>
+                <span><i class="fa fa-code"></i> <a href="#">leetcode/username-id</a></span>
+                <span>|</span>
+                <span><i class="fa fa-laptop-code"></i> <a href="#">portfolio.website.app</a></span>
+                <span>|</span>
+                <span><i class="fab fa-github"></i> <a href="#">github/username</a></span>
+            </div>
+        </header>
+
+        <h2 class="section-title">Education</h2>
+        
+        <div class="entry-header row">
+            <span class="bold">Institute of Technology Name Place</span>
+            <span class="small">2021 -- 2025</span>
+        </div>
+        <div class="sub-entry-header row">
+            <span class="italic small">B.Tech Computer Science Engineering</span>
+            <span class="small">CGPA: 0.00</span>
+        </div>
+
+        <div class="entry-header row" style="margin-top: 2px;">
+            <span class="bold">High School Name, City Location</span>
+            <span class="small">2019 -- 2020</span>
+        </div>
+        <div class="sub-entry-header row">
+            <span class="italic small">Class XII Standard</span>
+            <span class="small">00.0%</span>
+        </div>
+
+
+        <h2 class="section-title">Experience</h2>
+
+        <div class="entry-header row">
+            <span class="bold">CompanyName | <span class="italic">Job Title Here</span></span>
+            <span class="small">Dec 2024 - Present</span>
+        </div>
+        <div class="sub-entry-header row">
+            <span class="small">Tech Stack, Library, Framework</span>
+            <span class="small">Location City</span>
+        </div>
+        <ul>
+            <li>Integrated <strong>ToolName</strong> for state management and built webpages with <strong>Framework</strong> and <strong>Language</strong>, enhancing site functionality and scalability.</li>
+            <li>Set up <strong>Service</strong> for payments and optimized image delivery using <strong>Cloud Service CDN</strong>, improving transaction flow and load times.</li>
+            <li>Developed an onboarding tutorial, streamlining user experience and boosting engagement.</li>
+        </ul>
+
+        <div class="spacer"></div>
+        <div class="entry-header row">
+            <span class="bold">CompanyName | <span class="italic">Job Title Here</span></span>
+            <span class="small">Mar 2024 - Nov 2024</span>
+        </div>
+        <div class="sub-entry-header row">
+            <span class="small">Language, Lang, JavaScript</span>
+            <span class="small">Location | Remote</span>
+        </div>
+        <ul>
+            <li>Customized <strong>Browser's</strong> Android browser UI with <strong>Lang</strong> and <strong>Lang</strong>, rebranded to AppName, enabled mobile extensions, and developed an in-browser extension store for enhanced UX.</li>
+            <li>Developed in-browser <code>protocol://</code> webUIs with <strong>Language</strong>, <strong>Lang</strong> and <strong>Tool</strong>, embedding AI tasks and in-browser games.</li>
+            <li>Integrated a blockchain wallet UI in-browser using <strong>Lang Tool</strong> for bindings and <strong>Language</strong> for dApp support via <code>window.ethereum/solana</code>.</li>
+        </ul>
+
+        <div class="spacer"></div>
+        <div class="entry-header row">
+            <span class="bold">CompanyName | <span class="italic">Job Title Here</span></span>
+            <span class="small">Oct 2023 - Jan 2024</span>
+        </div>
+        <div class="sub-entry-header row">
+            <span class="small">Runtime, Framework, Database</span>
+            <span class="small">Remote</span>
+        </div>
+        <ul>
+            <li>Built Guest Mode: Developed a stateless session system with <strong>Runtime</strong> and <strong>Cache</strong> for guest IDs, enabling account-free purchases.</li>
+            <li>Designed a scalable wallet with "Virtual Coins" using <strong>Framework</strong>, <strong>Runtime</strong>, and <strong>Database</strong>. Built secure APIs with <strong>Library</strong> and <strong>Service</strong>.</li>
+            <li>Boosted SEO: Optimized <strong>Framework</strong> frontend for SSR, reducing TTFB by <strong>30%</strong>. Added dynamic meta tags and JSON-LD.</li>
+        </ul>
+
+        <div class="spacer"></div>
+        <div class="entry-header row">
+            <span class="bold">Organization Name | <span class="italic">Department Name</span></span>
+            <span class="small">May 2023 - Sep 2023</span>
+        </div>
+        <div class="sub-entry-header row">
+            <span class="small">Language, Language | <span class="italic">Mentors: Name Surname, Name Surname</span></span>
+            <span class="small">Remote</span>
+        </div>
+        <ul>
+            <li>Built an IPH pop-up with <strong>Language</strong> and <strong>Language</strong> for Browser's browser, enhancing user onboarding for media casting.</li>
+            <li>Enhanced browser playback efficiency with <strong>Language</strong> checks and <strong>Tool</strong> to track cast button visibility, boosting usability.</li>
+            <li>Improved <strong>Protocol</strong> protocol reliability in-browser with timeout actions and session handling, tested via <strong>Testing</strong>.</li>
+        </ul>
+
+
+        <h2 class="section-title">Projects</h2>
+
+        <div class="entry-header row">
+            <span class="bold">ProjectName | <span class="italic">Short Description Here</span></span>
+            <span class="small"><a href="#">website.url</a></span>
+        </div>
+        <ul>
+            <li>Built a full-stack platform with <strong>Library</strong> and <strong>Framework</strong>, delivering responsive UI and trading charts using daily stock API updates.</li>
+            <li>Optimized performance and SEO, achieving a <strong>97%</strong> Lighthouse score with 0.7s FCP via efficient rendering and API call reduction.</li>
+            <li>Deployed on <strong>Hosting</strong> and <strong>Cloud</strong>, enhancing scalability and cutting network latency by <strong>30%</strong> with optimized backend calls.</li>
+        </ul>
+
+        <div class="spacer"></div>
+        <div class="entry-header row">
+            <span class="bold">ProjectName | <span class="italic">Short Description Here</span></span>
+            <span class="small"><a href="#">website.url</a></span>
+        </div>
+        <ul>
+            <li>Developed a full-stack AI chatbot with <strong>Library</strong> and <strong>Language</strong>, integrating Model, Model, and Model for context-aware Serbian responses.</li>
+            <li>Optimized performance and analytics, achieving <strong>100%</strong> SEO and Best Practices scores with Tool/Tool for user behavior insights.</li>
+            <li>Deployed on <strong>Hosting</strong> and <strong>Cloud</strong>, enabling AWS Service API/API and Certbot-secured delivery with <strong>20%</strong> faster model outputs.</li>
+        </ul>
+
+
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="bold">Frontend</div>
+            <div>React, Next.js, TypeScript, HTML, CSS, Redux, Tailwind CSS, Material UI</div>
+            
+            <div class="bold">Backend</div>
+            <div>Node.js, Express.js, SQL</div>
+
+            <div class="bold">Databases</div>
+            <div>MongoDB, Redis, PostgreSQL</div>
+
+            <div class="bold">DevOps</div>
+            <div>AWS, Docker, Vercel</div>
+            
+            <div class="bold">OS</div>
+            <div>GNU/Linux, Windows</div>
+        </div>
+
+
+        <h2 class="section-title">Achievements</h2>
+        <ul>
+            <li><strong>CommunityDAO</strong> Blockchain Developer Community Membership (Month Year)</li>
+            <li><a href="#"><strong>Hackathon Name Here</strong></a> (Chain) - Winner <strong>$30,000</strong> (2nd Prize)</li>
+            <li><a href="#"><strong>Program Name Here '23</strong></a> (Organization)</li>
+            <li><a href="#"><strong>Hackathon League Name</strong></a> - Event Name Runner Up (Month Year)</li>
+        </ul>
+
+    </div>
+
+</body>
+</html>

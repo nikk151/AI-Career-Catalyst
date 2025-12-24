@@ -116,4 +116,4 @@ elif app_mode == "AI Mock Interview":
         st.session_state.messages.append({"role": "assistant", "content": ai_response})
         
         
-        
+
