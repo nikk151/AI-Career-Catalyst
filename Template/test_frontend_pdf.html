@@ -285,4 +285,59 @@
     </div>
 
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        #download-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: #dc3545; /* Red color */
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10000; /* Float above everything */
+            font-family: sans-serif;
+        }
+        #download-btn:hover {
+            background-color: #c82333;
+            transform: scale(1.05);
+        }
+    </style>
+
+    <button id="download-btn" onclick="generatePDF()">
+        <i class="fa fa-download"></i> Download PDF
+    </button>
+
+    <script>
+        function generatePDF() {
+            
+            const element = document.querySelector('.page');
+            
+            
+            const opt = {
+                margin:       0, 
+                filename:     'My_Frontend_Resume.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 }, 
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            
+            const btn = document.getElementById('download-btn');
+            btn.style.display = 'none';
+
+            
+            html2pdf().set(opt).from(element).save().then(() => {
+                
+                btn.style.display = 'block';
+            });
+        }
+    </script>
 </html>
